@@ -27,6 +27,17 @@ var TaskView = Backbone.View.extend({
 var Tasks = Backbone.Collection.extend({
   model: Task
 });
+
+var TasksView = Backbone.View.extend({
+  tagName: 'ul',
+  render: function() {
+    this.collection.each(function(task) {
+      var taskView = new TaskView({model: task});
+      this.$el.append(taskView.render().el);
+    }, this);
+    return this;
+  }
+})
 var tasks = new Tasks([
   {
     title: 'task1',
@@ -41,4 +52,7 @@ var tasks = new Tasks([
 ]);
 
 console.log(tasks.toJSON());
+
+var tasksView = new TasksView({collection: tasks});
+$('#tasks').html(tasksView.render().el);
 })();
