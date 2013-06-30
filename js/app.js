@@ -10,4 +10,12 @@ var Task = Backbone.Model.extend({
 });
 var task = new Task()
 
+// View
+var TaskView = Backbone.View.extend({
+  tagName: 'li'
+});
+var taskView = new TaskView({ model: task});
+
+console.log(taskView.el);
+
 })();
