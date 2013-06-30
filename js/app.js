@@ -57,6 +57,7 @@ var TasksView = Backbone.View.extend({
   addNew: function(task) {
     var taskView = new TaskView({model: task});
     this.$el.append(taskView.render().el);
+    $('#title').val('').focus();
   },
   updateCount: function() {
     var uncompletedTasks = this.collection.filter(function(task) {
@@ -85,6 +86,7 @@ var AddTaskView = Backbone.View.extend({
     var task = new Task();
     if (task.set({title: $('#title').val()}, {validate: true})) {
       this.collection.add(task);
+      $('#error').empty();
     }
   }
 })
